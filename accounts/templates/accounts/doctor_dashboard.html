@@ -1,0 +1,41 @@
+{% extends 'accounts/base.html' %}
+
+{% block title %}Doctor Dashboard{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body text-center">
+                {% if user.profile_picture %}
+                    <img src="{{ user.profile_picture.url }}" class="img-fluid rounded-circle mb-3" style="max-width: 150px;">
+                {% else %}
+                    <div class="bg-primary rounded-circle mx-auto mb-3" style="width: 150px; height: 150px; display: flex; align-items: center; justify-content: center;">
+                        <span class="text-white">No Image</span>
+                    </div>
+                {% endif %}
+                <h4>Dr. {{ user.first_name }} {{ user.last_name }}</h4>
+                <p class="text-muted">Doctor</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header">
+                <h4>Doctor Dashboard</h4>
+            </div>
+            <div class="card-body">
+                <h5>Personal Information</h5>
+                <table class="table table-striped">
+                    {% for key, value in user_details.items %}
+                        <tr>
+                            <td><strong>{{ key }}:</strong></td>
+                            <td>{{ value|default:"Not provided" }}</td>
+                        </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

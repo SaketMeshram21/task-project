@@ -1,0 +1,22 @@
+{% extends 'accounts/base.html' %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="jumbotron bg-light p-5 rounded">
+            <h1 class="display-4">Welcome to Banao Healthcare</h1>
+            <p class="lead">Your trusted healthcare management platform for patients and doctors.</p>
+            {% if not user.is_authenticated %}
+                <hr class="my-4">
+                <p>Get started by creating an account or logging in.</p>
+                <a class="btn btn-primary btn-lg me-3" href="{% url 'signup' %}" role="button">Sign Up</a>
+                <a class="btn btn-secondary btn-lg" href="{% url 'login' %}" role="button">Login</a>
+            {% else %}
+                <hr class="my-4">
+                <p>Welcome back, {{ user.first_name }}!</p>
+                <a class="btn btn-primary btn-lg" href="{% url 'dashboard' %}" role="button">Go to Dashboard</a>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}
